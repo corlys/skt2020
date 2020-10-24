@@ -8,7 +8,7 @@ sock.connect( ("127.0.0.1", 9999) )
 
 while True :
     # Kirim data
-    data = input("Masukkan string yang akan dikirim : ")
+    data = "sexy"
     sock.send( data.encode('ascii') )
     # Terima balasan dari server
     data = sock.recv(100)
