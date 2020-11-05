@@ -5,8 +5,8 @@ class paymentRPC(object):
 
     def checkSaldo(self, ammount):
         print('hellio ')
-        print(ammount > self.saldo)
-        return (ammount > self.saldo)
+        print(ammount < self.saldo)
+        return (ammount < self.saldo)
 
     def hello(self, test):
         return "OKE %s" % test
