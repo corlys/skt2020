@@ -14,12 +14,12 @@ class creditRPC(object):
     def get_status(self, amount):
         return self.conn.checkSaldo(amount)
 
-    def beli_pulsa(self, ammount):
+    def beli_pulsa(self, ammount, nomor):
         status = self.get_status(ammount)
         if status:
-            self.client.publish("/status/1", payload="Transaksi Berhasil", qos=1)
+            self.client.publish("/"+nomor, payload="Transaksi Berhasil", qos=1)
         else:
-            self.client.publish("/status/1", payload="Transaksi Tidak Berhasil", qos=1)
+            self.client.publish("/"+nomor, payload="Transaksi Tidak Berhasil", qos=1)
 
     
 

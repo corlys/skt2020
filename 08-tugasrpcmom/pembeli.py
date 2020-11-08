@@ -3,18 +3,19 @@ import threading
 # import library paho mqtt
 import paho.mqtt.client as mqtt
 
+nomor = input("masukkan nomor pulsa : ")
+
 # inisiasi client mqtt
-client = mqtt.Client(client_id="sub1", clean_session=False)
+client = mqtt.Client(client_id="sub"+nomor, clean_session=False)
 
 # Koneksikan ke broker
 client.connect("127.0.0.1", port=1883)
 
 # Subscribe ke salah satu topik
-client.subscribe("/status/1", qos=1)
+client.subscribe("/"+nomor, qos=1)
 
 c = zerorpc.Client()
 c.connect("tcp://127.0.0.1:4242")
-
 
 # Buat fungsi untuk menghandle message yang masuk
 def on_message(client, obj, msg):
@@ -39,5 +40,5 @@ subsThread.start()
 
 while True:
     data = int(input("masukkan ammount pulsa : "))
-    c.beli_pulsa(data)
+    c.beli_pulsa(data, nomor)
 
