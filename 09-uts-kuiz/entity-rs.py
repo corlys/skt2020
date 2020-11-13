@@ -14,10 +14,16 @@ class rumahSakitRPC(object):
     
 
     def on_message(self, client, obj, msg):
-        _payload = json.loads(msg.payload)
+        # _payload = json.loads(msg.payload)
         
-        self.dictionaryData.append(_payload)
+        # self.dictionaryData.append(_payload)
+        # print(self.dictionaryData)
+
+        _payload = json.loads(msg.payload)
+        for dick in _payload:
+            self.dictionaryData.append(dick)
         print(self.dictionaryData)
+
 
     def on_connect(self, client, userdata, flags, rc):
         print("Connected with result code "+str(rc))
@@ -57,7 +63,6 @@ class rumahSakitRPC(object):
             for key in dic:
                 if(nik == dic[key]):
                     return dic
-
     def handle_thread(self, client):
         try :
             # Buat infinite loop supaya subscriber tidak mati
@@ -74,3 +79,4 @@ try:
     # rs = rumahSakitRPC()
 except KeyboardInterrupt:
     print("Keluar")
+    exit()
