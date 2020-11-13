@@ -15,7 +15,9 @@ class rumahSakitRPC(object):
 
     def on_message(self, client, obj, msg):
         _payload = json.loads(msg.payload)
-        print(_payload)
+        
+        self.dictionaryData.append(_payload)
+        print(self.dictionaryData)
 
     def on_connect(self, client, userdata, flags, rc):
         print("Connected with result code "+str(rc))
