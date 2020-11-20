@@ -15,13 +15,20 @@ class rumahSakitRPC(object):
 
     def on_message(self, client, obj, msg):
         # _payload = json.loads(msg.payload)
-        
+        # listofnik = []
         # self.dictionaryData.append(_payload)
         # print(self.dictionaryData)
-
+        # for dic in self.dictionaryData:
+        #     listofnik.append(dic['nik'])
         _payload = json.loads(msg.payload)
-        for dick in _payload:
-            self.dictionaryData.append(dick)
+        self.dictionaryData.append(_payload)
+        # exist = False
+        # for dick in _payload:
+        #     for li in listofnik:
+        #         if(li == dick):
+        #             exist = True
+        #     if(exist == False):
+        #         self.dictionaryData.append(dick)
         print(self.dictionaryData)
 
 
@@ -53,9 +60,9 @@ class rumahSakitRPC(object):
             "penyakit" : _penyakit
         }
         
-        self.dictionaryData.append(newDict)
+        # self.dictionaryData.append(newDict)
 
-        self.client.publish("patientdata", payload=json.dumps(self.dictionaryData), qos=1) 
+        self.client.publish("patientdata", payload=json.dumps(newDict), qos=1) 
         return True
 
     def getData(self, nik):
